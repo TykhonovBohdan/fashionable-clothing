@@ -1,0 +1,13 @@
+<div class="heading-container">
+  <span class="line"></span>
+  <h2 class="section-title">Fashionable Clothing</h2>
+  <span class="line"></span>
+</div>
+
+<div class="items-container">
+  @for (item of clothingItems; track item.id) {
+  <app-item-card [item]="item"></app-item-card>
+  } @empty {
+  <p>На жаль, товарів немає.</p>
+  }
+</div>

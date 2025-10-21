@@ -1,0 +1,18 @@
+@if (item) {
+<div class="card">
+  <img [src]="item.imageUrl" [alt]="item.name" class="card-img" />
+  <div class="card-content">
+    <h3 class="card-title">{{ item.name }}</h3>
+    <p class="card-description">{{ item.description }}</p>
+    <p class="card-category">Категорія: {{ item.category }}</p>
+
+    @if (item.size?.length) {
+    <p class="card-sizes">Розміри: {{ item.size.join(', ') }}</p>
+    } @if (item.color) {
+    <p class="card-color">Колір: {{ item.color }}</p>
+    }
+
+    <p class="card-price">{{ item.price | currency : 'UAH ' : 'symbol' : '1.0-0' }}</p>
+  </div>
+</div>
+}
