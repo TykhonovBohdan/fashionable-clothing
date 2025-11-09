@@ -12,6 +12,7 @@ header {
 }
 
 main {
+  flex-grow: 1;
   padding: 40px;
   font-size: 1.2rem;
   background-color: #fff;
@@ -37,6 +38,12 @@ footer p {
 footer p:hover {
   color: #ff6f61;
   transition: color 0.3s ease;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 /* Адаптивність */

@@ -2,15 +2,18 @@ import { Component } from '@angular/core';
 import { ClothingItem } from '../shared/models/clothing-item';
 import { ItemCard } from '../item-card/item-card';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-items-list',
-  imports: [ItemCard, CommonModule],
+  imports: [ItemCard, CommonModule, FormsModule],
   templateUrl: './items-list.html',
   styleUrl: './items-list.css',
 })
 export class ItemsList {
-  clothingItems: ClothingItem[] = [
+  public searchTerm: string = '';
+
+  private allClothingItems: ClothingItem[] = [
     {
       id: 1,
       name: "Кросівки Nike Air Force 1 '07",
@@ -157,5 +160,22 @@ export class ItemsList {
     },
   ];
 
+  get filteredItems(): ClothingItem[] {
+    if (!this.searchTerm) {
+      return this.allClothingItems;
+    }
+
+    const term = this.searchTerm.toLowerCase();
+
+    return this.allClothingItems.filter(
+      (item) =>
+        item.name.toLowerCase().includes(term) || item.category.toLowerCase().includes(term)
+    );
+  }
+
   constructor() {}
+
+  onItemSelected(item: ClothingItem) {
+    console.log('Обраний елемент (з items-list):', item);
+  }
 }

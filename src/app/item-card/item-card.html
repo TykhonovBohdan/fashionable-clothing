@@ -1,34 +1,39 @@
-@if (item) {
-<div class="card" [ngClass]="{ 'on-sale': item.originalPrice }">
-  @if (item.originalPrice) {
+@if (item()) {
+<div class="card" [ngClass]="{ 'on-sale': item().originalPrice }">
+  @if (item().originalPrice) {
   <span class="discount-mark">
-    ЗНИЖКА -{{ (((item.originalPrice - item.price) / item.originalPrice) * 100) | number:'1.0-0' }}%
+    ЗНИЖКА -{{
+      ((item().originalPrice! - item().price) / item().originalPrice!) * 100 | number : '1.0-0'
+    }}%
   </span>
   }
-  <img [src]="item.imageUrl" [alt]="item.name" class="card-img" />
+  <img [src]="item().imageUrl" [alt]="item().name" class="card-img" />
   <div class="card-content">
-    <h3 class="card-title">{{ item.name }}</h3>
-    <p class="card-description">{{ item.description }}</p>
-    <p class="card-category">Категорія: {{ item.category }}</p>
+    <h3 class="card-title">{{ item().name }}</h3>
+    <p class="card-description">{{ item().description }}</p>
+    <p class="card-category">Категорія: {{ item().category }}</p>
 
-    @if (item.size.length > 0) {
-    <p class="card-sizes">Розміри: {{ item.size.join(', ') }}</p>
-    } @if (item.color) {
-    <p class="card-color">Колір: {{ item.color }}</p>
+    @if (item().size.length > 0) {
+    <p class="card-sizes">Розміри: {{ item().size.join(', ') }}</p>
+    } @if (item().color) {
+    <p class="card-color">Колір: {{ item().color }}</p>
     }
 
     <div class="price-container">
-      @if (item.originalPrice) {
+      @if (item().originalPrice) {
       <span class="original-price">{{
-        item.originalPrice | currency : 'UAH ' : 'symbol' : '1.0-0'
+        item().originalPrice | currency : 'UAH ' : 'symbol' : '1.0-0'
       }}</span>
       <span class="discounted-price">{{
-        item.price | currency : 'UAH ' : 'symbol' : '1.0-0'
+        item().price | currency : 'UAH ' : 'symbol' : '1.0-0'
       }}</span>
       } @else {
-      <span class="card-price">{{ item.price | currency : 'UAH ' : 'symbol' : '1.0-0' }}</span>
+      <span class="card-price">{{ item().price | currency : 'UAH ' : 'symbol' : '1.0-0' }}</span>
       }
     </div>
+
+    <button (click)="onShowDetails()" class="details-button">Детальніше</button>
+    
   </div>
 </div>
 }
