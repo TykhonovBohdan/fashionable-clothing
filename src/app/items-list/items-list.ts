@@ -28,7 +28,8 @@ export class ItemsList {
       name: "Джинси Levi's 501 Original Fit",
       description:
         'Культові джинси, з яких все почалося. Ця модель має незмінний прямий крій (straight leg) та фірмову застібку на ґудзиках (button-fly) з 1873 року.',
-      price: 3999,
+      price: 3199,
+      originalPrice: 3999,
       imageUrl:
         'https://lsco.scene7.com/is/image/lsco/005010193-front-pdp?fmt=jpeg&qlt=70&resMode=sharp2&fit=crop,1&op_usm=1.2,1,6,0&wid=1280&hei=1706',
       category: 'Джинси',
@@ -123,7 +124,8 @@ export class ItemsList {
       name: "Футболка з логотипом Ami Paris 'Ami de Cœur'",
       description:
         "Паризький шик у базовій речі. Ця футболка з органічної бавовни прикрашена фірмовою вишивкою 'Ami de Cœur' (Серце друга) на грудях.",
-      price: 4200,
+      price: 3800,
+      originalPrice: 4200,
       imageUrl:
         'https://media3.symbol.ua/aio-images/53/96/5396532721b1b30d46f99dad8f19e392/ce3d2d52-09b7-495f-8094-dc6b5504def6.jpg',
       category: 'Футболки',

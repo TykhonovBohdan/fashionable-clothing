@@ -47,3 +47,49 @@
   color: #000;
   margin-top: 15px;
 }
+
+.discount-mark {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ff4136;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.price-container {
+  margin-top: 15px;
+}
+
+.card-price {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.original-price {
+  font-size: 0.9rem;
+  color: #888;
+  text-decoration: line-through;
+  margin-right: 8px;
+}
+
+.discounted-price {
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #ff4136;
+}
+
+.on-sale {
+  border: 1px solid #ff6f61;
+  box-shadow: 0 8px 16px rgba(255, 111, 97, 0.15);
+}
+
+.on-sale:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 12px 24px rgba(255, 111, 97, 0.25);
+}

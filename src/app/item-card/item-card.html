@@ -1,5 +1,10 @@
 @if (item) {
-<div class="card">
+<div class="card" [ngClass]="{ 'on-sale': item.originalPrice }">
+  @if (item.originalPrice) {
+  <span class="discount-mark">
+    ЗНИЖКА -{{ (((item.originalPrice - item.price) / item.originalPrice) * 100) | number:'1.0-0' }}%
+  </span>
+  }
   <img [src]="item.imageUrl" [alt]="item.name" class="card-img" />
   <div class="card-content">
     <h3 class="card-title">{{ item.name }}</h3>
@@ -12,7 +17,18 @@
     <p class="card-color">Колір: {{ item.color }}</p>
     }
 
-    <p class="card-price">{{ item.price | currency : 'UAH ' : 'symbol' : '1.0-0' }}</p>
+    <div class="price-container">
+      @if (item.originalPrice) {
+      <span class="original-price">{{
+        item.originalPrice | currency : 'UAH ' : 'symbol' : '1.0-0'
+      }}</span>
+      <span class="discounted-price">{{
+        item.price | currency : 'UAH ' : 'symbol' : '1.0-0'
+      }}</span>
+      } @else {
+      <span class="card-price">{{ item.price | currency : 'UAH ' : 'symbol' : '1.0-0' }}</span>
+      }
+    </div>
   </div>
 </div>
 }
