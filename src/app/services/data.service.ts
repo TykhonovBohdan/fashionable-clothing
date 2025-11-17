@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ClothingItem } from '../shared/models/clothing-item';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -152,9 +153,25 @@ export class DataService {
     },
   ];
 
+  private itemsSubject = new BehaviorSubject<ClothingItem[]>(this.allClothingItems);
+
+  public items$: Observable<ClothingItem[]> = this.itemsSubject.asObservable();
+
   constructor() {}
 
-  public getItems(): ClothingItem[] {
-    return this.allClothingItems;
+  public filterItems(searchTerm: string): void {
+    let filteredItems: ClothingItem[];
+
+    if (!searchTerm) {
+      filteredItems = this.allClothingItems;
+    } else {
+      const term = searchTerm.toLowerCase();
+      filteredItems = this.allClothingItems.filter(
+        (item) =>
+          item.name.toLowerCase().includes(term) || item.category.toLowerCase().includes(term)
+      );
+    }
+
+    this.itemsSubject.next(filteredItems);
   }
 }

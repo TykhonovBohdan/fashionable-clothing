@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ClothingItem } from '../shared/models/clothing-item';
 import { ItemCard } from '../item-card/item-card';
 import { CommonModule } from '@angular/common';
@@ -16,18 +17,10 @@ export class ItemsList {
 
   private dataService = inject(DataService);
 
-  private allClothingItems: ClothingItem[] = this.dataService.getItems();
+  public items = toSignal(this.dataService.items$, { initialValue: [] });
 
-  get filteredItems(): ClothingItem[] {
-    if (!this.searchTerm) {
-      return this.allClothingItems;
-    }
-
-    const term = this.searchTerm.toLowerCase();
-
-    return this.allClothingItems.filter(
-      (item) => item.name.toLowerCase().includes(term) || item.category.toLowerCase().includes(term)
-    );
+  onSearchChange(): void {
+    this.dataService.filterItems(this.searchTerm);
   }
 
   constructor() {}
