@@ -114,6 +114,9 @@
   font-weight: bold;
   font-size: 0.9rem;
   transition: background-color 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .details-button:hover {

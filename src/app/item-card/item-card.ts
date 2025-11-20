@@ -1,21 +1,15 @@
-import { Component, input, output, InputSignal, OutputEmitterRef } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
 import { ClothingItem } from '../shared/models/clothing-item';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-item-card',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './item-card.html',
   styleUrl: './item-card.css',
 })
 export class ItemCard {
   item: InputSignal<ClothingItem> = input.required<ClothingItem>();
-
-  select: OutputEmitterRef<ClothingItem> = output<ClothingItem>();
-
-  constructor() {}
-
-  onShowDetails(): void {
-    this.select.emit(this.item());
-  }
 }

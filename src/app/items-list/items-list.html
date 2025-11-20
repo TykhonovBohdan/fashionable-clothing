@@ -16,7 +16,7 @@
 
 <div class="items-container">
   @for (item of items(); track item.id) {
-  <app-item-card [item]="item" (select)="onItemSelected($event)"></app-item-card>
+  <app-item-card [item]="item"></app-item-card>
   } @empty {
   <p>На жаль, товарів за вашим запитом не знайдено.</p>
   }

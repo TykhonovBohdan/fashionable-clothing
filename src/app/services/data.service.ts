@@ -159,6 +159,10 @@ export class DataService {
 
   constructor() {}
 
+  public getItemById(id: number): ClothingItem | undefined {
+    return this.allClothingItems.find((item) => item.id === id);
+  }
+
   public filterItems(searchTerm: string): void {
     let filteredItems: ClothingItem[];
 
