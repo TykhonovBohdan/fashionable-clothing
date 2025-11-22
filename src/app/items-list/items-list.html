@@ -4,7 +4,7 @@
   <span class="line"></span>
 </div>
 
-<div class="search-container">
+<div class="controls-container">
   <input
     type="text"
     placeholder="Пошук за назвою або категорією..."
@@ -12,6 +12,8 @@
     (ngModelChange)="onSearchChange()"
     class="search-input"
   />
+
+  <a routerLink="/items/new" class="add-button">+ Додати</a>
 </div>
 
 <div class="items-container">

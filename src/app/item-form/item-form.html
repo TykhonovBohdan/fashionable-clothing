@@ -1,0 +1,83 @@
+<div class="form-container">
+  <h2>Додати новий товар</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="clothing-form">
+    <div class="form-group">
+      <label for="name">Назва товару *</label>
+      <input id="name" type="text" formControlName="name" placeholder="Наприклад: Куртка шкіряна" />
+
+      @if (form.controls.name.invalid && form.controls.name.touched) {
+      <div class="error-message">
+        @if (form.controls.name.hasError('required')) { Назва є обов'язковою } @if
+        (form.controls.name.hasError('minlength')) { Мінімум 3 символи }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="category">Категорія *</label>
+      <select id="category" formControlName="category">
+        <option value="" disabled selected>Оберіть категорію</option>
+        <option value="Взуття">Взуття</option>
+        <option value="Одяг">Одяг</option>
+        <option value="Аксесуари">Аксесуари</option>
+        <option value="Верхній одяг">Верхній одяг</option>
+      </select>
+
+      @if (form.controls.category.invalid && form.controls.category.touched) {
+      <div class="error-message">Оберіть категорію</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="price">Ціна (UAH) *</label>
+      <input id="price" type="number" formControlName="price" placeholder="0" />
+
+      @if (form.controls.price.invalid && form.controls.price.touched) {
+      <div class="error-message">
+        @if (form.controls.price.hasError('required')) { Вкажіть ціну } @if
+        (form.controls.price.hasError('min')) { Ціна має бути більше 0 }
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="description">Опис *</label>
+      <textarea id="description" formControlName="description" rows="4"></textarea>
+
+      @if (form.controls.description.invalid && form.controls.description.touched) {
+      <div class="error-message">Опис обов'язковий (макс 500 символів)</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="imageUrl">Посилання на фото *</label>
+      <input id="imageUrl" type="text" formControlName="imageUrl" placeholder="https://..." />
+
+      @if (form.controls.imageUrl.invalid && form.controls.imageUrl.touched) {
+      <div class="error-message">Введіть коректне посилання (http:// або https://)</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="size">Розміри (через кому) *</label>
+      <input id="size" type="text" formControlName="size" placeholder="S, M, L, XL" />
+
+      @if (form.controls.size.invalid && form.controls.size.touched) {
+      <div class="error-message">Вкажіть хоча б один розмір</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="color">Колір</label>
+      <input id="color" type="text" formControlName="color" placeholder="Чорний" />
+    </div>
+
+    <div class="form-actions">
+      <a routerLink="/items" class="cancel-btn">Скасувати</a>
+      <button type="submit" class="submit-btn" [disabled]="form.invalid || isSubmitting()">
+        {{ isSubmitting() ? 'Збереження...' : 'Створити товар' }}
+      </button>
+    </div>
+  </form>
+</div>

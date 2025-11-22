@@ -178,4 +178,17 @@ export class DataService {
 
     this.itemsSubject.next(filteredItems);
   }
+
+  public addItem(newItemData: Omit<ClothingItem, 'id'>): void {
+    const maxId = this.allClothingItems.reduce((max, item) => (item.id > max ? item.id : max), 0);
+
+    const newItem: ClothingItem = {
+      id: maxId + 1,
+      ...newItemData,
+    };
+
+    this.allClothingItems = [newItem, ...this.allClothingItems];
+
+    this.itemsSubject.next(this.allClothingItems);
+  }
 }
