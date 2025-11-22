@@ -1,5 +1,5 @@
 @if (item()) {
-<div class="card" [ngClass]="{ 'on-sale': item().originalPrice }">
+<div class="card" [ngClass]="{ 'on-sale': item().originalPrice }" appHighlight="#fff5f5">
   @if (item().originalPrice) {
   <span class="discount-mark">
     ЗНИЖКА -{{
@@ -10,7 +10,7 @@
   <img [src]="item().imageUrl" [alt]="item().name" class="card-img" />
   <div class="card-content">
     <h3 class="card-title">{{ item().name }}</h3>
-    <p class="card-description">{{ item().description }}</p>
+    <p class="card-description">{{ item().description | truncate : 90 }}</p>
     <p class="card-category">Категорія: {{ item().category }}</p>
 
     @if (item().size.length > 0) {
@@ -33,7 +33,6 @@
     </div>
 
     <a [routerLink]="['/items/', item().id]" class="details-button">Детальніше</a>
-    
   </div>
 </div>
 }
