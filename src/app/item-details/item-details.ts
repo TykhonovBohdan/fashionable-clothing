@@ -3,6 +3,8 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { CommonModule } from '@angular/common';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-item-details',
@@ -15,25 +17,22 @@ export class ItemDetails {
   private route = inject(ActivatedRoute);
   private dataService = inject(DataService);
 
-  private params = toSignal(this.route.paramMap, { initialValue: null });
+  public item = toSignal(
+    this.route.paramMap.pipe(
+      switchMap((params) => {
+        const idStr = params.get('id');
+        const id = idStr ? Number(idStr) : NaN;
 
-  private itemId = computed(() => {
-    const p = this.params();
-    if (!p) return undefined;
-    const idStr = p.get('id');
-    const id = idStr ? Number(idStr) : NaN;
-    return !isNaN(id) ? id : undefined;
-  });
-
-  public item = computed(() => {
-    const id = this.itemId();
-    return id !== undefined ? this.dataService.getItemById(id) : undefined;
-  });
+        if (!isNaN(id)) {
+          return this.dataService.getItemById(id);
+        }
+        return of(undefined);
+      })
+    ),
+    { initialValue: null }
+  );
 
   public notFound = computed(() => {
-    const p = this.params();
-    if (!p) return false;
-
     return this.item() === undefined;
   });
 }

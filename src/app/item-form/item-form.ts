@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { DataService } from '../services/data.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-item-form',
@@ -14,6 +15,7 @@ import { DataService } from '../services/data.service';
 export class ItemForm {
   private dataService = inject(DataService);
   private router = inject(Router);
+  private toastService = inject(ToastService);
 
   isSubmitting = signal(false);
 
@@ -65,6 +67,7 @@ export class ItemForm {
 
     setTimeout(() => {
       this.dataService.addItem(newItemData);
+      this.toastService.success(`Товар "${newItemData.name}" успішно створено!`);
       this.isSubmitting.set(false);
       this.router.navigate(['/items']);
     }, 500);
