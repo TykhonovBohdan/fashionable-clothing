@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ToastComponent } from '../toast/toast';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -10,6 +11,7 @@ import { ToastComponent } from '../toast/toast';
   styleUrl: './layout.css',
 })
 export class Layout {
+  authService = inject(AuthService);
   title = 'Fashionable Clothing';
   year = new Date().getFullYear();
 }

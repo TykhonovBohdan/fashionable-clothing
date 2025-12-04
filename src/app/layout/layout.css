@@ -1,7 +1,15 @@
 header {
   background-color: #ff6f61;
-  text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0 20px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .header-logo {
@@ -9,6 +17,23 @@ header {
   height: 60px;
   width: auto;
   filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.8));
+}
+
+.auth-btn {
+  background-color: white;
+  color: #ff6f61;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.auth-btn:hover {
+  background-color: #f0f0f0;
 }
 
 main {
