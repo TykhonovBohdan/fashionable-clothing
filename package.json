@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:fashionable-clothing": "node dist/fashionable-clothing/server/server.mjs",
-    "server": "npx json-server db.json --port 3000"
+    "server": "npx json-server@0.17.4 db.json --port 3000"
   },
   "prettier": {
     "printWidth": 100,
